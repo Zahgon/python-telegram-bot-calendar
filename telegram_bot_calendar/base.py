@@ -92,19 +92,13 @@ class TelegramCalendar:
 
     @staticmethod
     def func(calendar_id=0, telethon=False):
-        def inn(callback):
-            start = CB_CALENDAR + "_" + str(calendar_id)
-            return callback.decode("utf-8").startswith(start) if telethon else callback.data.startswith(start)
-
-        return inn
+        pass
 
     def build(self):
-        if not self._keyboard:
-            self._build()
-        return self._keyboard, self.step
+        pass
 
     def process(self, call_data):
-        return self._process(call_data)
+        pass
 
     def _build(self, *args, **kwargs):
         """
@@ -118,62 +112,29 @@ class TelegramCalendar:
         """
 
     def _build_callback(self, action, step, data, *args, is_random=False, **kwargs):
-        if action == NOTHING:
-            params = [CB_CALENDAR, str(self.calendar_id), action]
-        else:
-            data = list(map(str, data.timetuple()[:3]))
-            params = [CB_CALENDAR, str(self.calendar_id), action, step] + data
-
-        # Random is used here to protect bots from being spammed by some 'smart' users.
-        # Random callback data will not produce api errors "Message is not modified".
-        # However, there is still a chance (1 in 1e18) that the same callbacks are created.
-        salt = "_" + str(random.randint(1, 1e18)) if is_random else ""
-
-        return "_".join(params) + salt
+        pass
 
     def _build_button(self, text, action, step=None, data=None, is_random=False, **kwargs):
-        if self.telethon:
-            return Button.inline(text=str(text), data=self._build_callback(action, step, data, is_random=is_random))
-        else:
-            return {
-                'text': text,
-                'callback_data': self._build_callback(action, step, data, is_random=is_random)
-            }
+        pass
 
     def _build_keyboard(self, buttons):
-        if self.telethon:
-            return buttons
-        return self._build_json_keyboard(buttons)
+        pass
 
     def _build_json_keyboard(self, buttons):
         """
         Build keyboard in json to send to Telegram API over HTTP.
         """
-        return json.dumps({"inline_keyboard": buttons + self.additional_buttons})
+        pass
 
     def _valid_date(self, d):
-        return self.min_date <= d <= self.max_date
+        pass
 
     def _get_period(self, step, start, diff, *args, **kwargs):
         """
         Used for getting period of dates with a given step, start date and difference.
         It allows to create empty dates if they are not in the given range.
         """
-        lstep = LSTEP[step] + "s"
-        dates = []
-
-        empty_before = 0
-        empty_after = 0
-
-        for i in range(diff):
-            n_date = start + relativedelta(**{lstep: i})
-            if self.min_date > max_date(n_date, step):
-                empty_before += 1
-            elif self.max_date < min_date(n_date, step):
-                empty_after += 1
-            else:
-                dates.append(n_date)
-        return [None] * empty_before + dates + [None] * empty_after
+        pass
 
 
 def rows(buttons, row_size):
@@ -181,7 +142,7 @@ def rows(buttons, row_size):
     Build rows for the keyboard. Divides list of buttons to list of lists of buttons.
 
     """
-    return [buttons[i:i + row_size] for i in range(0, max(len(buttons) - row_size, 0) + 1, row_size)]
+    pass
 
 
 def max_date(d, step):
