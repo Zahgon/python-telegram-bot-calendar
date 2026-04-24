@@ -162,9 +162,4 @@ def max_date(d, step):
 
 
 def min_date(d, step):
-        pass
-
-
-
-
-
+    pass
