@@ -153,18 +153,18 @@ def max_date(d, step):
     :param d datetime
     :param step current step
     """
-    if step == YEAR:
-        return d.replace(month=12, day=31)
-    elif step == MONTH:
-        return d.replace(day=calendar.monthrange(d.year, d.month)[1])
-    else:
-        return d
+        pass
+
+
+
+
+
 
 
 def min_date(d, step):
-    if step == YEAR:
-        return d.replace(month=1, day=1)
-    elif step == MONTH:
-        return d.replace(day=1)
-    else:
-        return d
+        pass
+
+
+
+
+
